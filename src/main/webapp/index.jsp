@@ -10,7 +10,7 @@
 <Head><title>表单</title></head>
 <body>
 <h2 align="center">新生信息注册</h2>
-
+<%--这是master--%>
 <form align="center" action="SubmitServlet" >
     <input type="button" value="查看信息" onclick="window.location.href='Query.jsp'"><br><br>
 
