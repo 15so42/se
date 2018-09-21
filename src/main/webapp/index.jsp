@@ -11,7 +11,7 @@
 <body>
 <h2 align="center">新生信息注册</h2>
 <form>
-    录取号<input type="text">
+    录取号:<input type="text">
 </form>
 <%--<form align="center" action="SubmitServlet" >--%>
     <%--<input type="button" value="查看信息" onclick="window.location.href='Query.jsp'"><br><br>--%>
