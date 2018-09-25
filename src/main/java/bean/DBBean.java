@@ -14,7 +14,7 @@ public class DBBean {
 
 	public String driverName="oracle.jdbc.driver.OracleDriver";
 	private String dataBaseUrl="jdbc:oracle:thin:@localhost:1521:orcl";
-	public String DUserName="sys as sysdba";
+	public String DUserName="scott";
 	public String DPassword="admin";
 
 
@@ -64,6 +64,28 @@ public class DBBean {
         }
         return null;
 
+    }
+
+    public  ResultSet  QueryByString(String sql){
+        ResultSet rs;
+        try {
+            rs=stmt.executeQuery(sql);
+            return rs;
+        } catch (SQLException e) {
+            System.out.print("查询失败"+e.getMessage()+sql);
+        }
+        return null;
+    }
+
+    public boolean  UpdateByString(String sql){
+        boolean update;
+        try {
+            update=stmt.execute(sql);
+            return update;
+        } catch (SQLException e) {
+            System.out.print("查询失败"+e.getMessage()+sql);
+        }
+        return false;
     }
 
 

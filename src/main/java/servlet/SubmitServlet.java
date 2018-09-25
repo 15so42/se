@@ -2,7 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 import javax.servlet.ServletException;
@@ -55,9 +56,26 @@ public class SubmitServlet extends HttpServlet {
         String smajor= request.getParameter("smajor");
 
         DBBean db=new DBBean();
-        if( db.Add(sno,sname,ssex,stelephone,smajor)){
-            response.sendRedirect("Query.jsp");
+
+        String sql="select * from freshman where 考生号='"+sno+"' and 姓名='"+sname+"'";
+        System.out.println(sql);
+        ResultSet rs=db.QueryByString(sql);
+        try {
+            if(rs.next()){
+
+               request.getRequestDispatcher("checkPay.jsp").forward(request,response);
+            }
+            else
+            {
+                out.print("<script type=\"text/javascript\" language=\"javascript\">\n" +
+                        "alert(\"抱歉,你好像不是本校的学生\");\n" +
+                        "window.document.location.href=\"index.jsp\";\n" +
+                        "</script> \n");
+            }
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
         }
+
     }
 
     /**
